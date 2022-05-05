@@ -15,6 +15,7 @@ This a PWA note/text editor system that still functions even when offline.
   * [Questions](#questions)
 
 ## Screenshot
+![pwa-screenshot](https://user-images.githubusercontent.com/100175351/166854266-3f8212c2-726b-4355-bbde-e0908fc831e6.png)
 
 
 ## Installation
