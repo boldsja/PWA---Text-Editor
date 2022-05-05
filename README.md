@@ -6,7 +6,7 @@
 This a PWA note/text editor system that still functions even when offline.
 
 ## Link to Heroku
-https://powerful-shelf-63967.herokuapp.com/
+- [Heroku Deployed: Text Editor (Just Another Text Editor)](https://jate-kj.herokuapp.com/)
 
 
 ## Table of Contents
