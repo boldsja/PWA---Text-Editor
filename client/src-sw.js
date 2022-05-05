@@ -56,7 +56,7 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
   array with these three strings.
 
   Something like:
-     const paths = []   // complete the array
+     const paths = ['style', 'script', 'worker']   // complete the array
 
   We also need to be able to reference whatever destination is being sought. This 
   is part of the {request} object being injected below. So we would get that value 
@@ -70,9 +70,10 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
   If you supply the correct values below, this file is complete.
 */
+const paths = ['style', 'script', 'worker']
 
-registerRoute( ({ request }) => variableForArrayHere.ARRAY_METHOD_HERE(variableForDestinationHere),
-  new CLASSNAME_TO_INSTANTIATE_HERE({
+registerRoute( ({ request }) => paths.includes(request.destination),
+  new StaleWhileRevalidate({
     cacheName: 'asset-cache',
     plugins: [
       new CacheableResponsePlugin({

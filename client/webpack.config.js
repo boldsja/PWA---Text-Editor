@@ -16,8 +16,51 @@ module.exports = () => {
     },
 
     plugins: [
+      new HtmlWebpackPlugin({
+        template: "./index.html",
+        title: "J.A.T.E."
+      }),
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: "Just Another Text Editor",
+        description: "App that creates a text editor",
+        background_color: "#225ca3",
+        theme_color: "#225ca3",
+        start_url: "/",
+        publicPath: "/",
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+              sizes: [96, 128, 192, 256, 384, 512],
+              destination: path.join('assets', 'icons'),
+          }
+        ]
+      }),
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "src-sw.js"
+      })
+
+
 
     /*
+          fingerprints should be false
+      inject should be true
+      name should be 'Just Another Text Editor'
+      short_name should be 'J.A.T.E'
+      description can be anything you like. This is an app that creates a text editor, so write something suitable.
+      background_color and theme_color should be '#225ca3'
+      start_url and publicPath should be  '/'
+      icons should be:
+          [
+            {
+              src: path.resolve('src/images/logo.png'),
+              sizes: [96, 128, 192, 256, 384, 512],
+              destination: path.join('assets', 'icons'),
+            },
+          ]
+
       TODO:
 
       We need to configure some plugins for Wepack to use. They 
@@ -47,21 +90,6 @@ module.exports = () => {
       For WebpackPwaManifest, we'll need the following values set in the config 
       object:
 
-      fingerprints should be false
-      inject should be true
-      name should be 'Just Another Text Editor'
-      short_name should be 'J.A.T.E'
-      description can be anything you like. This is an app that creates a text editor, so write something suitable.
-      background_color and theme_color should be '#225ca3'
-      start_url and publicPath should be  '/'
-      icons should be:
-          [
-            {
-              src: path.resolve('src/images/logo.png'),
-              sizes: [96, 128, 192, 256, 384, 512],
-              destination: path.join('assets', 'icons'),
-            },
-          ]
 
       When all three plugins are configured this work is done.
     */
@@ -82,7 +110,22 @@ module.exports = () => {
 
           When you copy and paste them below, you'll be done here.
         */
-
+          {
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader'],
+          },
+          {
+            test: /\.m?js$/,
+            exclude: /node_modules/,
+            // We use babel-loader in order to use ES6.
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+                plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+              },
+            },
+          },
       ],
     },
   };
