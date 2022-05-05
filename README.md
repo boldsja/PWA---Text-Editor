@@ -6,7 +6,7 @@
 This a PWA note/text editor system that still functions even when offline.
 
 ## Link to Heroku
-https://git.heroku.com/powerful-shelf-63967.git
+https://powerful-shelf-63967.herokuapp.com/
 
 
 ## Table of Contents
